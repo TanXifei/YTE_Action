@@ -15,7 +15,7 @@ import org.mtr.mod.block.IBlock;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import top.xfunny.mod.block.MitsubishiNexWayButton2;
+import top.xfunny.mod.block.HitachiIVIB322ButtonDotMatrix;
 import top.xfunny.mod.block.base.LiftButtonsBase;
 import top.xfunny.mod.client.resource.FontList;
 import top.xfunny.mod.client.view.*;
@@ -28,20 +28,23 @@ import top.xfunny.mod.util.ReverseRendering;
 
 import java.util.Comparator;
 
-public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<MitsubishiNexWayButton2.BlockEntity> implements DirectionHelper, IGui, IBlock {
+public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<HitachiIVIB322ButtonDotMatrix.BlockEntity> implements DirectionHelper, IGui, IBlock {
 
-    private static final int HOVER_COLOR = 0xFFFFCC66;
-    private static final int PRESSED_COLOR = 0xFFFF8800;
-    private static final Identifier ARROW_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/mitsubishi_nexway_1_arrow.png");
-    private static final Identifier BUTTON_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/mitsubishi_nexway_button_1.png");
-    private static final Identifier BUTTON_LIGHT_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/mitsubishi_nexway_button_1_light.png");
+    private static final int HOVER_COLOR = 0xAAFFFFFF;
+    private static final int PRESSED_COLOR = 0xFFFFFFFF;
+    private static final int DEFAULT_COLOR = 0x00FFFFFF;
+    private static final Identifier ARROW_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/hitachi_bxsclc6_arrow.png");
+    private static final Identifier BUTTON_UP_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_up.png");
+    private static final Identifier LIGHT_UP_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_up_light.png");
+    private static final Identifier BUTTON_DOWN_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_down.png");
+    private static final Identifier LIGHT_DOWN_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_down_light.png");
 
-    public RenderMitsubishiNexWayButton2(Argument dispatcher) {
+    public RenderHitachiIVIB322ButtonDotMatrix(Argument dispatcher) {
         super(dispatcher);
     }
 
     @Override
-    public void render(MitsubishiNexWayButton2.BlockEntity blockEntity, float tickDelta, GraphicsHolder graphicsHolder1, int light, int overlay) {
+    public void render(HitachiIVIB322ButtonDotMatrix.BlockEntity blockEntity, float tickDelta, GraphicsHolder graphicsHolder1, int light, int overlay) {
         final World world = blockEntity.getWorld2();
         if (world == null) {
             return;
@@ -64,7 +67,7 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
         StoredMatrixTransformations storedMatrixTransformations1 = storedMatrixTransformations.copy();
         storedMatrixTransformations1.add(graphicsHolder -> {
             graphicsHolder.rotateYDegrees(-facing.asRotation());
-            graphicsHolder.translate(0, 0, 7.95F / 16 - SMALL_OFFSET);
+            graphicsHolder.translate(0, 0, 7.55F / 16 - SMALL_OFFSET);
         });
 
 
@@ -89,7 +92,7 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
         buttonLayout.setBasicsAttributes(world, blockEntity.getPos2());
         buttonLayout.setWidth(LayoutSize.MATCH_PARENT);
         buttonLayout.setHeight(LayoutSize.MATCH_PARENT);
-        buttonLayout.setMargin(0, 1.4F / 16, 0, 0);
+        buttonLayout.setMargin(0, -0.5F / 16, 0, 0);
 
 
         final LinearLayout buttonContainer = new LinearLayout(true);
@@ -114,42 +117,41 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
 
         ImageView buttonUp = new ImageView();
         buttonUp.setBasicsAttributes(world, blockPos);
-        buttonUp.setTexture(BUTTON_TEXTURE);
-        buttonUp.setDimension(0.9F / 16);
+        buttonUp.setTexture(BUTTON_UP_TEXTURE);
+        buttonUp.setDimension(1F / 16);
         buttonUp.setGravity(Gravity.CENTER);
         buttonUp.setLight(light);
 
         NewButtonView buttonUpLight = new NewButtonView();
         buttonUpLight.setId("up");
         buttonUpLight.setBasicsAttributes(world, blockPos, keyMapping);
-        buttonUpLight.setTexture(BUTTON_LIGHT_TEXTURE);
-        buttonUpLight.setDimension(0.9F / 16);
+        buttonUpLight.setTexture(LIGHT_UP_TEXTURE);
+        buttonUpLight.setDimension(1F / 16);
         buttonUpLight.setGravity(Gravity.CENTER);
         buttonUpLight.setLight(light);
-        buttonUpLight.setDefaultColor(ARGB_WHITE);
+        buttonUpLight.setDefaultColor(DEFAULT_COLOR);
         buttonUpLight.setHoverColor(HOVER_COLOR);
         buttonUpLight.setPressedColor(PRESSED_COLOR);
 
         ImageView buttonDown = new ImageView();
         buttonDown.setBasicsAttributes(world, blockPos);
-        buttonDown.setTexture(BUTTON_TEXTURE);
-        buttonDown.setDimension(0.9F / 16);
+        buttonDown.setTexture(BUTTON_DOWN_TEXTURE);
+        buttonDown.setDimension(1F / 16);
         buttonDown.setGravity(Gravity.CENTER);
         buttonDown.setLight(light);
-        buttonDown.setFlip(false, true);
+        buttonDown.setFlip(false, false);
 
         NewButtonView buttonDownLight = new NewButtonView();
         buttonDownLight.setId("down");
         buttonDownLight.setBasicsAttributes(world, blockPos, keyMapping);
-        buttonDownLight.setTexture(BUTTON_LIGHT_TEXTURE);
-        buttonDownLight.setDimension(0.9F / 16);
+        buttonDownLight.setTexture(LIGHT_DOWN_TEXTURE);
+        buttonDownLight.setDimension(1F / 16);
         buttonDownLight.setGravity(Gravity.CENTER);
         buttonDownLight.setLight(light);
-        buttonDownLight.setDefaultColor(ARGB_WHITE);
+        buttonDownLight.setDefaultColor(DEFAULT_COLOR);
         buttonDownLight.setHoverColor(HOVER_COLOR);
         buttonDownLight.setPressedColor(PRESSED_COLOR);
-        buttonDownLight.setFlip(false, true);
-
+        buttonDownLight.setFlip(false, false);
 
         final LineComponent line = new LineComponent();
         line.setBasicsAttributes(world, blockEntity.getPos2());
@@ -163,7 +165,7 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
             line.RenderLine(holdingLinker, trackPosition);
 
 
-            MitsubishiNexWayButton2.hasButtonsClient(trackPosition, buttonDescriptor, (floorIndex, lift) -> {
+            HitachiIVIB322ButtonDotMatrix.hasButtonsClient(trackPosition, buttonDescriptor, (floorIndex, lift) -> {
                 sortedPositionsAndLifts.add(new ObjectObjectImmutablePair<>(trackPosition, lift));
                 final ObjectArraySet<LiftDirection> instructionDirections = lift.hasInstruction(floorIndex);
                 instructionDirections.forEach(liftDirection -> {
@@ -178,8 +180,6 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
                 });
             });
         });
-
-
         sortedPositionsAndLifts.sort(Comparator.comparingInt(sortedPositionAndLift -> blockEntity.getPos2().getManhattanDistance(new Vector3i(sortedPositionAndLift.left().data))));
 
         if (!sortedPositionsAndLifts.isEmpty()) {
@@ -187,44 +187,31 @@ public class RenderMitsubishiNexWayButton2 extends BlockEntityRenderer<Mitsubish
             final int count = Math.min(2, sortedPositionsAndLifts.size());
             final boolean reverseRendering = count > 1 && ReverseRendering.reverseRendering(facing.rotateYCounterclockwise(), sortedPositionsAndLifts.get(0).left(), sortedPositionsAndLifts.get(1).left());
 
-
             for (int i = 0; i < count; i++) {
 
                 final LiftFloorDisplayView liftFloorDisplayView = new LiftFloorDisplayView();
                 liftFloorDisplayView.setBasicsAttributes(world,
                         blockEntity.getPos2(),
                         sortedPositionsAndLifts.get(i).right(),
-                        FontList.instance.getFont("mitsubishi_modern"),
-                        6,
-                        0xFFFA7A24);
-                //liftFloorDisplayView.setDisplayLength(2, 0.05F);
-                liftFloorDisplayView.setTextureId("mitsubishi_nexway_button_2_display");
-                liftFloorDisplayView.setWidth(1.3F / 16);
+                        FontList.instance.getFont("hitachi-led-dot_matrix"),
+                        6F,
+                        0xFFFF4800);
+                liftFloorDisplayView.setTextureId("hitachi-vib-322-dot-matrix");
+                liftFloorDisplayView.setWidth(1.6F / 16);
                 liftFloorDisplayView.setHeight(1.7F / 16);
-                liftFloorDisplayView.setMargin(0.1F / 16, 0, 0, 0);
+
+                liftFloorDisplayView.setMargin(0.01F, 0, 0, 0);
                 liftFloorDisplayView.setTextAlign(TextView.HorizontalTextAlign.CENTER);
-                liftFloorDisplayView.addStoredMatrixTransformations(graphicsHolder -> graphicsHolder.translate(0, 0, -SMALL_OFFSET));
-                if (liftFloorDisplayView.getTextLength() >= 3) {
-                    liftFloorDisplayView.setBasicsAttributes(world,
-                            blockEntity.getPos2(),
-                            sortedPositionsAndLifts.get(i).right(),
-                            FontList.instance.getFont("mitsubishi_small_sht"),
-                            6,
-                            0xFFFA7A24);
-                    liftFloorDisplayView.setAdaptMode(LiftFloorDisplayView.AdaptMode.FORCE_FIT_WIDTH);
-                } else {
-                    liftFloorDisplayView.setAdaptMode(LiftFloorDisplayView.AdaptMode.ASPECT_FILL);
-                }
 
 
                 final LiftArrowView liftArrowView = new LiftArrowView();
                 liftArrowView.setBasicsAttributes(world, blockEntity.getPos2(), sortedPositionsAndLifts.get(i).right(), LiftArrowView.ArrowType.AUTO);
                 liftArrowView.setTexture(ARROW_TEXTURE);
-                liftArrowView.setQueuedRenderLayer(QueuedRenderLayer.LIGHT_TRANSLUCENT);
-                liftArrowView.setDimension(0.7F / 16);
-                liftArrowView.setMargin(0, 1.07F / 16, 0, 0);
+                liftArrowView.setDimension(0.6F / 16, 384, 512);
+                liftArrowView.setMargin(0, 1.37F / 16, 0, 0);
                 liftArrowView.setGravity(Gravity.CENTER_HORIZONTAL);
-                liftArrowView.setColor(0xFFFA7A24);
+                liftArrowView.setQueuedRenderLayer(QueuedRenderLayer.LIGHT_TRANSLUCENT);
+                liftArrowView.setColor(0xFFFFFFFF);
 
 
                 final LinearLayout numberLayout = new LinearLayout(true);

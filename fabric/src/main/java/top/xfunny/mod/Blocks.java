@@ -7,6 +7,8 @@ import org.mtr.mapping.registry.BlockRegistryObject;
 import org.mtr.mod.block.BlockTicketMachine;
 import top.xfunny.mod.block.*;
 
+import static org.mtr.mod.Blocks.createDefaultBlockSettings;
+
 
 public class Blocks {
 
@@ -99,6 +101,8 @@ public class Blocks {
 
     public static final BlockRegistryObject HITACHI_VIB320_BUTTON;
     public static final BlockRegistryObject HITACHI_VIB320_BUTTON_DOT_MATRIX;
+    public static final BlockRegistryObject HITACHI_VIB322_BUTTON;
+    public static final BlockRegistryObject HITACHI_VIB322_BUTTON_DOT_MATRIX;
 
     public static final BlockRegistryObject TONIC_DS_SCREEN_1_ODD;
     public static final BlockRegistryObject TONIC_DS_SCREEN_1_EVEN;
@@ -113,6 +117,20 @@ public class Blocks {
     public static final BlockRegistryObject PAT_P01_TICKET_BARRIER_EXIT;
     public static final BlockRegistryObject PAT_P01_TICKET_BARRIER_BARE;
     public static final BlockRegistryObject PAT_TM01_TICKET_MACHINE;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_2_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_2_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_3_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_3_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_4_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_4_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_5_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_5_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_6_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_6_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_7_EVEN;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_7_ODD;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_MIDDLE;
+    public static final BlockRegistryObject PAT_RS01_RAILWAY_SIGN_POLE;
 
     public static final BlockRegistryObject LIFT_TRACK_EMPTY_FLOOR;
 
@@ -207,6 +225,8 @@ public class Blocks {
 
         HITACHI_VIB320_BUTTON = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_vib320_button_1"), () -> new Block(new HitachiIVIB320Button()), CreativeModeTabs.YTE_LIFT_FIXTURES);
         HITACHI_VIB320_BUTTON_DOT_MATRIX = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_vib320_button_1_dot_matrix"), () -> new Block(new HitachiIVIB320ButtonDotMatrix()), CreativeModeTabs.YTE_LIFT_FIXTURES);
+        HITACHI_VIB322_BUTTON = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_vib322_button_1"), () -> new Block(new HitachiIVIB322Button()), CreativeModeTabs.YTE_LIFT_FIXTURES);
+        HITACHI_VIB322_BUTTON_DOT_MATRIX = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_vib322_button_1_dot_matrix"), () -> new Block(new HitachiIVIB322ButtonDotMatrix()), CreativeModeTabs.YTE_LIFT_FIXTURES);
 
         HITACHI_B85_BUTTON_1 = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_b85_button_1"), () -> new Block(new HitachiB85Button1()), CreativeModeTabs.YTE_LIFT_FIXTURES);
         HITACHI_B85_BUTTON_1_WITHOUT_SCREEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "hitachi_b85_button_1_without_screen"), () -> new Block(new HitachiB85Button1WithoutScreen()), CreativeModeTabs.YTE_LIFT_FIXTURES);
@@ -226,6 +246,20 @@ public class Blocks {
         PAT_P01_TICKET_BARRIER_EXIT = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_p01_ticket_barrier_exit"), () -> new Block(new PATTicketBarrier(false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
         PAT_P01_TICKET_BARRIER_BARE = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_p01_ticket_barrier_bare"), () -> new Block(new PATTicketBarrierBareBlock(BlockHelper.createBlockSettings(false, true).strength(4.0f).nonOpaque())), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
         PAT_TM01_TICKET_MACHINE = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_tm01_ticket_machine"), () -> new Block(new BlockTicketMachine(BlockHelper.createBlockSettings(true, true, falseblockState -> 5))), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_2_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_2_even"), () -> new Block(new PATRS01RailwaySign(2, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_2_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_2_odd"), () -> new Block(new PATRS01RailwaySign(2, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_3_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_3_even"), () -> new Block(new PATRS01RailwaySign(3, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_3_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_3_odd"), () -> new Block(new PATRS01RailwaySign(3, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_4_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_4_even"), () -> new Block(new PATRS01RailwaySign(4, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_4_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_4_odd"), () -> new Block(new PATRS01RailwaySign(4, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_5_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_5_even"), () -> new Block(new PATRS01RailwaySign(5, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_5_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_5_odd"), () -> new Block(new PATRS01RailwaySign(5, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_6_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_6_even"), () -> new Block(new PATRS01RailwaySign(6, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_6_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_6_odd"), () -> new Block(new PATRS01RailwaySign(6, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_7_EVEN = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_7_even"), () -> new Block(new PATRS01RailwaySign(7, false)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_7_ODD = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_7_odd"), () -> new Block(new PATRS01RailwaySign(7, true)), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
+        PAT_RS01_RAILWAY_SIGN_MIDDLE = Init.REGISTRY.registerBlock(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_middle"), () -> new Block(new PATRS01RailwaySign(0, false)));
+        PAT_RS01_RAILWAY_SIGN_POLE = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "pat_rs01_railway_sign_pole"), () -> new Block(new PATRS01RailwaySignPole(createDefaultBlockSettings(false))), CreativeModeTabs.YTE_RAILWAY_FACILITIES);
 
         LIFT_TRACK_EMPTY_FLOOR = Init.REGISTRY.registerBlockWithBlockItem(new Identifier(Init.MOD_ID, "lift_track_empty_floor"), () -> new Block(new EmptyFloor()));
 

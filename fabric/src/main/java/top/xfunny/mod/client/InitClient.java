@@ -107,6 +107,8 @@ public final class InitClient {
 
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_VIB320_BUTTON, RenderHitachiIVIB320Button::new);
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_VIB320_BUTTON_DOT_MATRIX, RenderHitachiIVIB320ButtonDotMatrix::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_VIB322_BUTTON, RenderHitachiIVIB322Button::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_VIB322_BUTTON_DOT_MATRIX, RenderHitachiIVIB322ButtonDotMatrix::new);
 
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_B85_BUTTON_1, RenderHitachiB85Button1::new);
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.HITACHI_B85_BUTTON_1_WITHOUT_SCREEN, RenderHitachiB85Button1WithoutScreen::new);
@@ -128,6 +130,18 @@ public final class InitClient {
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.SCHINDLER_QKS9_DOOR_1, dispatcher -> new top.xfunny.mod.client.render.RenderLiftDoor<>(dispatcher, 3));
         REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.OTIS_E411_US_DOOR_1, dispatcher -> new top.xfunny.mod.client.render.RenderLiftDoor<>(dispatcher, 8));
 
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_2_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_2_ODD, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_3_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_3_ODD, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_4_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_4_ODD, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_5_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_5_ODD, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_6_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_6_ODD, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_7_EVEN, RenderPATRS01RailwaySign::new);
+        REGISTRY_CLIENT.registerBlockEntityRenderer(BlockEntityTypes.PAT_RS01_RAILWAY_SIGN_7_ODD, RenderPATRS01RailwaySign::new);
 
         REGISTRY_CLIENT.registerItemModelPredicate(Items.YTE_LIFT_BUTTONS_LINK_CONNECTOR, new Identifier(org.mtr.mod.Init.MOD_ID, "selected"), checkItemPredicateTag());
         REGISTRY_CLIENT.registerItemModelPredicate(Items.YTE_LIFT_BUTTONS_LINK_REMOVER, new Identifier(org.mtr.mod.Init.MOD_ID, "selected"), checkItemPredicateTag());
