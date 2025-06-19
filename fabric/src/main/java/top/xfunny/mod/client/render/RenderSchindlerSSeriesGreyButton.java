@@ -27,6 +27,7 @@ public class RenderSchindlerSSeriesGreyButton extends BlockEntityRenderer<Schind
 
     private static final int HOVER_COLOR = 0xFF90FF90;
     private static final int PRESSED_COLOR = 0xFF00FF00;
+    private static final int DEFAULT_COLOR = 0xFF000000;
     private final Identifier BUTTON_TEXTURE = new Identifier(Init.MOD_ID, "textures/block/schindler_s_series_grey_button.png");
     private final Identifier BUTTON_LIGHT_TEXTURE = new Identifier(Init.MOD_ID, "textures/block/schindler_s_series_grey_button_light.png");
 
@@ -63,7 +64,7 @@ public class RenderSchindlerSSeriesGreyButton extends BlockEntityRenderer<Schind
         });
 
         final FrameLayout parentLayout = new FrameLayout();
-        parentLayout.setBasicsAttributes(world, blockEntity.getPos2());
+        parentLayout.setBasicsAttributes(world, blockPos);
         parentLayout.setStoredMatrixTransformations(storedMatrixTransformations1);
         parentLayout.setParentDimensions(3.5F / 16, 9F / 16);
         parentLayout.setPosition(-0.109375F, 0);
@@ -108,6 +109,7 @@ public class RenderSchindlerSSeriesGreyButton extends BlockEntityRenderer<Schind
         buttonUpLight.setDefaultColor(ARGB_WHITE);
         buttonUpLight.setHoverColor(HOVER_COLOR);
         buttonUpLight.setPressedColor(PRESSED_COLOR);
+        buttonUpLight.setDefaultColor(DEFAULT_COLOR);
 
         ImageView buttonDown = new ImageView();
         buttonDown.setBasicsAttributes(world, blockPos);
@@ -127,9 +129,10 @@ public class RenderSchindlerSSeriesGreyButton extends BlockEntityRenderer<Schind
         buttonDownLight.setDefaultColor(ARGB_WHITE);
         buttonDownLight.setHoverColor(HOVER_COLOR);
         buttonDownLight.setPressedColor(PRESSED_COLOR);
+        buttonDownLight.setDefaultColor(DEFAULT_COLOR);
 
         final LineComponent line = new LineComponent();
-        line.setBasicsAttributes(world, blockEntity.getPos2());
+        line.setBasicsAttributes(world, blockPos);
 
         final ObjectArrayList<ObjectObjectImmutablePair<BlockPos, Lift>> sortedPositionsAndLifts = new ObjectArrayList<>();
 
