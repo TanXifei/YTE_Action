@@ -13,21 +13,22 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class HitachiButton_PAFC extends LiftButtonsBase {
-    public HitachiButton_PAFC() {
+public class HitachiVIB320Button extends LiftButtonsBase {
+    public HitachiVIB320Button() {
         super(true, true);
     }
 
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return IBlock.getVoxelShapeByDirection(6.4, 0, 0, 9.6, 5.5, 0.1, IBlock.getStatePropertySafe(state, FACING));
+        final boolean single = !IBlock.getStatePropertySafe(world.getBlockState(pos), SINGLE);
+        return IBlock.getVoxelShapeByDirection(single ? 6 : 6.75, 2.775, 0, single ? 10 : 9.25, 12.275, 0.45, IBlock.getStatePropertySafe(state, FACING));
     }
 
     @Nonnull
     @Override
     public BlockEntityExtension createBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new HitachiButton_PAFC.BlockEntity(blockPos, blockState);
+        return new HitachiVIB320Button.BlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -39,12 +40,13 @@ public class HitachiButton_PAFC extends LiftButtonsBase {
 
     @Override
     public void addTooltips(@NotNull ItemStack stack, @Nullable BlockView world, List<MutableText> tooltip, @NotNull TooltipContext options) {
-        tooltip.add(TextHelper.translatable("tooltip.warning_block_testing").formatted(TextFormatting.RED));
+        tooltip.add(TextHelper.translatable("tooltip.hitachi_display_cip_71").formatted(TextFormatting.GRAY));
+        tooltip.add(TextHelper.translatable("tooltip.hitachi_button_wl_mo").formatted(TextFormatting.GRAY));
     }
 
-    public static class BlockEntity extends LiftButtonsBase.BlockEntityBase {
+    public static class BlockEntity extends BlockEntityBase {
         public BlockEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.HITACHI_BUTTON_PAFC.get(), pos, state);
+            super(BlockEntityTypes.HITACHI_VIB320_BUTTON.get(), pos, state);
         }
     }
 }

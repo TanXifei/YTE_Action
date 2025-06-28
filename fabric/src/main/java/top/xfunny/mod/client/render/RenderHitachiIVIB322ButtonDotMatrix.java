@@ -15,7 +15,7 @@ import org.mtr.mod.block.IBlock;
 import org.mtr.mod.data.IGui;
 import org.mtr.mod.render.QueuedRenderLayer;
 import org.mtr.mod.render.StoredMatrixTransformations;
-import top.xfunny.mod.block.HitachiIVIB322ButtonDotMatrix;
+import top.xfunny.mod.block.HitachiVIB322ButtonDotMatrix;
 import top.xfunny.mod.block.base.LiftButtonsBase;
 import top.xfunny.mod.client.resource.FontList;
 import top.xfunny.mod.client.view.*;
@@ -28,7 +28,7 @@ import top.xfunny.mod.util.ReverseRendering;
 
 import java.util.Comparator;
 
-public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<HitachiIVIB322ButtonDotMatrix.BlockEntity> implements DirectionHelper, IGui, IBlock {
+public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<HitachiVIB322ButtonDotMatrix.BlockEntity> implements DirectionHelper, IGui, IBlock {
 
     private static final int HOVER_COLOR = 0xAAFFFFFF;
     private static final int PRESSED_COLOR = 0xFFFFFFFF;
@@ -38,13 +38,13 @@ public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<Hit
     private static final Identifier LIGHT_UP_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_up_light.png");
     private static final Identifier BUTTON_DOWN_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_down.png");
     private static final Identifier LIGHT_DOWN_TEXTURE = new Identifier(top.xfunny.mod.Init.MOD_ID, "textures/block/wl_mo_down_light.png");
-
+    private static final BooleanProperty UNLOCKED = BooleanProperty.of("unlocked");
     public RenderHitachiIVIB322ButtonDotMatrix(Argument dispatcher) {
         super(dispatcher);
     }
 
     @Override
-    public void render(HitachiIVIB322ButtonDotMatrix.BlockEntity blockEntity, float tickDelta, GraphicsHolder graphicsHolder1, int light, int overlay) {
+    public void render(HitachiVIB322ButtonDotMatrix.BlockEntity blockEntity, float tickDelta, GraphicsHolder graphicsHolder1, int light, int overlay) {
         final World world = blockEntity.getWorld2();
         if (world == null) {
             return;
@@ -61,6 +61,7 @@ public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<Hit
         final BlockPos blockPos = blockEntity.getPos2();
         final BlockState blockState = world.getBlockState(blockPos);
         final Direction facing = IBlock.getStatePropertySafe(blockState, FACING);
+        final boolean unlocked = IBlock.getStatePropertySafe(blockState, UNLOCKED);
         LiftButtonsBase.LiftButtonDescriptor buttonDescriptor = new LiftButtonsBase.LiftButtonDescriptor(false, false);
 
         final StoredMatrixTransformations storedMatrixTransformations = new StoredMatrixTransformations(blockPos.getX() + 0.5, blockPos.getY(), blockPos.getZ() + 0.5);
@@ -165,7 +166,7 @@ public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<Hit
             line.RenderLine(holdingLinker, trackPosition);
 
 
-            HitachiIVIB322ButtonDotMatrix.hasButtonsClient(trackPosition, buttonDescriptor, (floorIndex, lift) -> {
+            HitachiVIB322ButtonDotMatrix.hasButtonsClient(trackPosition, buttonDescriptor, (floorIndex, lift) -> {
                 sortedPositionsAndLifts.add(new ObjectObjectImmutablePair<>(trackPosition, lift));
                 final ObjectArraySet<LiftDirection> instructionDirections = lift.hasInstruction(floorIndex);
                 instructionDirections.forEach(liftDirection -> {
@@ -224,7 +225,11 @@ public class RenderHitachiIVIB322ButtonDotMatrix extends BlockEntityRenderer<Hit
                 liftArrowView.setMargin(0, 1.37F / 16, 0, 0);
                 liftArrowView.setGravity(Gravity.CENTER_HORIZONTAL);
                 liftArrowView.setQueuedRenderLayer(QueuedRenderLayer.LIGHT_TRANSLUCENT);
-                liftArrowView.setColor(0xFFFFFFFF);
+                if (unlocked) {
+                    liftArrowView.setColor(0xFFFFFFFF);
+                } else {
+                    liftArrowView.setColor(0xFF000000);
+                }
 
 
                 final LinearLayout numberLayout = new LinearLayout(true);
